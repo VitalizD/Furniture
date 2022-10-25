@@ -8,8 +8,11 @@ namespace Service
 
         [Header("Prefabs")]
         [SerializeField] private GameObject _bum;
+        [SerializeField] private GameObject _movingCenter;
 
         public GameObject Bum { get => _bum; }
+
+        public GameObject MovingCenter { get => _movingCenter; }
 
         private void Awake()
         {
