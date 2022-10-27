@@ -6,7 +6,9 @@ namespace Gameplay.Furniture
     public class FurnitureMoving : MonoBehaviour
     {
         [SerializeField] private float _force;
+        [SerializeField] private float _velocityForDamage;
 
+        private Rigidbody2D _rigidbody2D;
         private HingeJoint2D _hingeJoint2D;
         private Camera _mainCamera;
 
@@ -14,6 +16,7 @@ namespace Gameplay.Furniture
 
         private void Awake()
         {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
             _hingeJoint2D = GetComponent<HingeJoint2D>();
             _mainCamera = Camera.main;
         }
@@ -44,6 +47,18 @@ namespace Gameplay.Furniture
 
             Destroy(_movingPoint.gameObject);
             _hingeJoint2D.anchor = Vector2.zero;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (_movingPoint == null)
+                return;
+
+            if (_rigidbody2D.velocity.magnitude * _rigidbody2D.mass >= _velocityForDamage)
+            {
+                var spawnPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, -10f);
+                Instantiate(GameStorage.Instanse.Bum, spawnPoint, GameStorage.Instanse.Bum.transform.localRotation);
+            }
         }
     }
 }
