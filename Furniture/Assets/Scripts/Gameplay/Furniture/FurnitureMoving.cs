@@ -13,6 +13,12 @@ namespace Gameplay.Furniture
         private Camera _mainCamera;
 
         private Rigidbody2D _movingPoint;
+        private bool _locked = false;
+
+        public void SetLock(bool value)
+        {
+            _locked = value;
+        }
 
         private void Awake()
         {
@@ -23,6 +29,9 @@ namespace Gameplay.Furniture
 
         private void OnMouseDown()
         {
+            if (_locked)
+                return;
+
             var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             _movingPoint = Instantiate(GameStorage.Instanse.MovingCenter, mousePosition, Quaternion.identity)
                 .GetComponent<Rigidbody2D>();
@@ -32,7 +41,7 @@ namespace Gameplay.Furniture
 
         private void OnMouseDrag()
         {
-            if (_movingPoint == null)
+            if (_movingPoint == null || _locked)
                 return;
 
             var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -42,7 +51,7 @@ namespace Gameplay.Furniture
 
         private void OnMouseUp()
         {
-            if (_movingPoint == null)
+            if (_movingPoint == null || _locked)
                 return;
 
             Destroy(_movingPoint.gameObject);

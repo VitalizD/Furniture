@@ -4,6 +4,8 @@ namespace Gameplay.Furniture
 {
     public class FurniturePlace2 : MonoBehaviour
     {
+        private const float _moveOnPlaceSpeed = 5f;
+
         [SerializeField] private float _requiredDistance;
         [SerializeField] private float _requiredAngleSpread;
         [SerializeField] private Color _inPlaceHighlight;
@@ -11,7 +13,7 @@ namespace Gameplay.Furniture
         [SerializeField] private GameObject[] _furnitureVariants;
 
         private bool inPlace = false;
-        private Color _initColor;
+        //private Color _initColor;
         private FurnitureMoving _target;
 
         private void Awake()
@@ -23,7 +25,7 @@ namespace Gameplay.Furniture
             _target = Instantiate(randomFurniture, Vector2.zero, Quaternion.identity).GetComponent<FurnitureMoving>();
             var targetSprite = _target.GetComponent<SpriteRenderer>();
             _sprite.sprite = targetSprite.sprite;
-            _initColor = targetSprite.color;
+            //_initColor = targetSprite.color;
             transform.localScale = _target.transform.localScale;
         }
 
@@ -34,7 +36,7 @@ namespace Gameplay.Furniture
 
             var minAngle = transform.rotation.z - _requiredAngleSpread;
             var maxAngle = transform.rotation.z + _requiredAngleSpread;
-            var targetAngle = _target.transform.eulerAngles.z > 180f ? 
+            var targetAngle = _target.transform.eulerAngles.z > 180f ?
                 _target.transform.eulerAngles.z - 360f : _target.transform.eulerAngles.z;
 
             if (!inPlace && Vector2.Distance(transform.position, _target.transform.position) <= _requiredDistance
@@ -47,6 +49,13 @@ namespace Gameplay.Furniture
             {
                 SetInPlace(false);
             }
+
+            if (inPlace)
+            {
+                _target.transform.SetPositionAndRotation(
+                    Vector3.Lerp(_target.transform.position, transform.position, _moveOnPlaceSpeed * Time.deltaTime), 
+                    Quaternion.Lerp(_target.transform.rotation, transform.rotation, _moveOnPlaceSpeed * Time.deltaTime));
+            }
         }
 
         private void OnDrawGizmosSelected()
@@ -57,15 +66,16 @@ namespace Gameplay.Furniture
         private void SetInPlace(bool value)
         {
             inPlace = value;
+            _target.SetLock(value);
 
-            if (value)
-            {
-                _target.GetComponent<SpriteRenderer>().color = _inPlaceHighlight;
-            }
-            else
-            {
-                _target.GetComponent<SpriteRenderer>().color = _initColor;
-            }
+            //if (value)
+            //{
+            //    _target.GetComponent<SpriteRenderer>().color = _inPlaceHighlight;
+            //}
+            //else
+            //{
+            //    _target.GetComponent<SpriteRenderer>().color = _initColor;
+            //}
         }
     }
 }
