@@ -1,42 +1,65 @@
 using UnityEngine;
+using System.Collections;
 
 namespace Gameplay.Furniture
 {
     public class FurniturePlace : MonoBehaviour
     {
+        private const float _moveOnPlaceSpeed = 5f;
+
+        [SerializeField] private bool considerAngle = true;
         [SerializeField] private float _requiredDistance;
+        [SerializeField] private float _requiredAngleSpread;
+        [SerializeField] private float _highlightTime;
         [SerializeField] private Color _inPlaceHighlight;
         [SerializeField] private SpriteRenderer _sprite;
-        [SerializeField] private GameObject[] _furnitureVariants;
+        [SerializeField] private FurnitureMoving[] _targets;
 
-        private bool inPlace = false;
-        private Color _initColor;
-        private FurnitureBase _target;
+        private bool busy = false;
+        private int hash;
 
         private void Awake()
         {
-            if (_furnitureVariants.Length == 0)
+            if (_targets.Length == 0)
                 return;
 
-            var randomFurniture = _furnitureVariants[Random.Range(0, _furnitureVariants.Length)];
-            _target = Instantiate(randomFurniture, Vector2.zero, Quaternion.identity).GetComponent<FurnitureBase>();
-            var targetSprite = _target.GetSpriteRenderer();
+            var targetSprite = _targets[0].GetComponent<SpriteRenderer>();
             _sprite.sprite = targetSprite.sprite;
-            _initColor = targetSprite.color;
+            transform.localScale = _targets[0].transform.localScale;
+            hash = GetHashCode();
         }
 
         private void Update()
         {
-            if (_target == null)
+            if (_targets.Length == 0)
                 return;
 
-            if (!inPlace && Vector2.Distance(transform.position, _target.transform.position) <= _requiredDistance)
+            for (var i = 0; i < _targets.Length; ++i)
             {
-                SetInPlace(true);
-            }
-            else if (inPlace && Vector2.Distance(transform.position, _target.transform.position) > _requiredDistance)
-            {
-                SetInPlace(false);
+                var target = _targets[i];
+                var minAngle = transform.eulerAngles.z - _requiredAngleSpread;
+                var maxAngle = transform.eulerAngles.z + _requiredAngleSpread;
+                var targetAngle = target.transform.eulerAngles.z < -1f ?
+                    (target.transform.eulerAngles.z % 360f) + 360f : target.transform.eulerAngles.z % 360f;
+
+                if (target.PlaceHash != hash && !busy && Vector2.Distance(transform.position, target.transform.position) <= _requiredDistance
+                    && (!considerAngle || (targetAngle >= minAngle && targetAngle <= maxAngle)))
+                {
+                    SetInPlace(target, true);
+                }
+                else if (target.PlaceHash == hash && busy && (Vector2.Distance(transform.position, target.transform.position) > _requiredDistance
+                    || (considerAngle && (targetAngle < minAngle || targetAngle > maxAngle))))
+                {
+                    SetInPlace(target, false);
+                }
+
+                if (target.PlaceHash == hash && busy)
+                {
+                    target.transform.SetPositionAndRotation(
+                        Vector3.Lerp(target.transform.position, transform.position, _moveOnPlaceSpeed * Time.deltaTime),
+                        Quaternion.Lerp(target.transform.rotation, transform.rotation, _moveOnPlaceSpeed * Time.deltaTime));
+                    break;
+                }
             }
         }
 
@@ -45,19 +68,24 @@ namespace Gameplay.Furniture
             Gizmos.DrawWireSphere(transform.position, _requiredDistance);
         }
 
-        private void SetInPlace(bool value)
+        private void SetInPlace(FurnitureMoving furniture, bool value)
         {
-            inPlace = value;
-            _target.SetLock(value);
-
+            busy = value;
+            furniture.SetLock(value);
             if (value)
             {
-                _target.GetSpriteRenderer().color = _inPlaceHighlight;
+                StartCoroutine(Highlight(furniture));
+                furniture.PlaceHash = hash;
             }
             else
-            {
-                _target.GetSpriteRenderer().color = _initColor;
-            }
+                furniture.PlaceHash = 0;
+        }
+
+        private IEnumerator Highlight(FurnitureMoving furniture)
+        {
+            furniture.SetColor(_inPlaceHighlight);
+            yield return new WaitForSeconds(_highlightTime);
+            furniture.SetInitColor();
         }
     }
 }

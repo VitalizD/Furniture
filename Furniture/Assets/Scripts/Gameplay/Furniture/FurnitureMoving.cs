@@ -11,9 +11,18 @@ namespace Gameplay.Furniture
         private Rigidbody2D _rigidbody2D;
         private HingeJoint2D _hingeJoint2D;
         private Camera _mainCamera;
+        private SpriteRenderer _spriteRenderer;
 
-        private Rigidbody2D _movingPoint;
+        private Rigidbody2D _movingPoint = null;
+        private Color _initColor;
+        private float _fixedZPosition;
         private bool _locked = false;
+
+        public int PlaceHash { get; set; }
+
+        public void SetColor(Color color) => _spriteRenderer.color = color;
+
+        public void SetInitColor() => _spriteRenderer.color = _initColor;
 
         public void SetLock(bool value)
         {
@@ -25,6 +34,14 @@ namespace Gameplay.Furniture
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _hingeJoint2D = GetComponent<HingeJoint2D>();
             _mainCamera = Camera.main;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _initColor = _spriteRenderer.color;
+            _fixedZPosition = transform.position.z;
+        }
+
+        private void Update()
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, _fixedZPosition);
         }
 
         private void OnMouseDown()
