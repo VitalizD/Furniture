@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 namespace Gameplay.Furniture
@@ -17,6 +18,8 @@ namespace Gameplay.Furniture
 
         private bool busy = false;
         private int hash;
+
+        public static event Action<int> FurnitureInPlaced;
 
         private void Awake()
         {
@@ -72,6 +75,7 @@ namespace Gameplay.Furniture
         {
             busy = value;
             furniture.SetLock(value);
+            FurnitureInPlaced?.Invoke(value ? 1 : -1);
             if (value)
             {
                 StartCoroutine(Highlight(furniture));

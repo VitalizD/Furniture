@@ -33,6 +33,7 @@ namespace Gameplay.Furniture
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _hingeJoint2D = GetComponent<HingeJoint2D>();
+            _hingeJoint2D.enabled = false;
             _mainCamera = Camera.main;
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _initColor = _spriteRenderer.color;
@@ -49,6 +50,7 @@ namespace Gameplay.Furniture
             if (_locked)
                 return;
 
+            _hingeJoint2D.enabled = true;
             var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             _movingPoint = Instantiate(GameStorage.Instanse.MovingCenter, mousePosition, Quaternion.identity)
                 .GetComponent<Rigidbody2D>();
@@ -73,6 +75,7 @@ namespace Gameplay.Furniture
 
             Destroy(_movingPoint.gameObject);
             _hingeJoint2D.anchor = Vector2.zero;
+            _hingeJoint2D.enabled = false;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
