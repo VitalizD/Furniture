@@ -832,6 +832,11 @@ MonoBehaviour:
   - {fileID: 681002448}
   - {fileID: 318422059}
   - {fileID: 981324102}
+--- !u!1 &364425084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6121479672855543501, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+  m_PrefabInstance: {fileID: 567229499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &370600413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,6 +1443,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 382341172}
     m_Modifications:
+    - target: {fileID: 6121479672855543500, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_Size.x
+      value: 3.5134232
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121479672855543500, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.14143622
+      objectReference: {fileID: 0}
     - target: {fileID: 6121479672855543501, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
       propertyPath: m_Name
       value: Chair
@@ -1507,12 +1520,38 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6121479672855543506, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
   m_PrefabInstance: {fileID: 567229499}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 364425084}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2177b0635ac2a74b847286a13508906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &567229506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364425084}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.18, y: 5.37}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.18, y: 5.37}
+  m_EdgeRadius: 0
 --- !u!1001 &681002446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2804,10 +2843,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 971605759}
   m_HandleRect: {fileID: 823460876}
   m_Direction: 0
-  m_MinValue: 10
-  m_MaxValue: 250
+  m_MinValue: 250
+  m_MaxValue: 1000
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 250
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
