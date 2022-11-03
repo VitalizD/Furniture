@@ -10,9 +10,14 @@ namespace Service
         [SerializeField] private GameObject _bum;
         [SerializeField] private GameObject _movingCenter;
 
+        [Header("Variables")]
+        [SerializeField] private float _capturePointZPos;
+
         public GameObject Bum { get => _bum; }
 
         public GameObject MovingCenter { get => _movingCenter; }
+
+        public float CapturePointZPos { get => _capturePointZPos; }
 
         private void Awake()
         {

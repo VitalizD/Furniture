@@ -42,7 +42,7 @@ namespace Gameplay.Furniture
                 var target = _targets[i];
                 var minAngle = transform.eulerAngles.z - _requiredAngleSpread;
                 var maxAngle = transform.eulerAngles.z + _requiredAngleSpread;
-                var targetAngle = target.transform.eulerAngles.z < -1f ?
+                var targetAngle = target.transform.eulerAngles.z < -15f ?
                     (target.transform.eulerAngles.z % 360f) + 360f : target.transform.eulerAngles.z % 360f;
 
                 if (target.PlaceHash != hash && !busy && Vector2.Distance(transform.position, target.transform.position) <= _requiredDistance
