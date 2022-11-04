@@ -129,9 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47f3c5806fccd94eacfa9e3df226bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  considerAngle: 1
   _requiredDistance: 0.2
   _requiredAngleSpread: 10
   _highlightTime: 0.5
   _inPlaceHighlight: {r: 0.7886792, g: 1, b: 0.78679246, a: 1}
+  _notInPlaceHighlight: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   _sprite: {fileID: 6584369967494159924}
   _targets: []

@@ -13,8 +13,11 @@ namespace Gameplay.Furniture
         [SerializeField] private float _requiredAngleSpread;
         [SerializeField] private float _highlightTime;
         [SerializeField] private Color _inPlaceHighlight;
+        [SerializeField] private Color _notInPlaceHighlight;
         [SerializeField] private SpriteRenderer _sprite;
         [SerializeField] private FurnitureMoving[] _targets;
+
+        private Coroutine _highlightCoroutine;
 
         private bool busy = false;
         private int hash;
@@ -30,6 +33,12 @@ namespace Gameplay.Furniture
             _sprite.sprite = targetSprite.sprite;
             transform.localScale = _targets[0].transform.localScale;
             hash = GetHashCode();
+        }
+
+        private void Start()
+        {
+            foreach (var target in _targets)
+                target.SetColor(_notInPlaceHighlight);
         }
 
         private void Update()
@@ -78,11 +87,16 @@ namespace Gameplay.Furniture
             FurnitureInPlaced?.Invoke(value ? 1 : -1);
             if (value)
             {
-                StartCoroutine(Highlight(furniture));
+                _highlightCoroutine = StartCoroutine(Highlight(furniture));
                 furniture.PlaceHash = hash;
             }
             else
+            {
+                if (_highlightCoroutine != null)
+                    StopCoroutine(_highlightCoroutine);
                 furniture.PlaceHash = 0;
+                furniture.SetColor(_notInPlaceHighlight);
+            }
         }
 
         private IEnumerator Highlight(FurnitureMoving furniture)

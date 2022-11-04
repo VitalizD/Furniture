@@ -136,6 +136,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 13.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 13.33
+      objectReference: {fileID: 0}
     - target: {fileID: 5619967018985207910, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -178,6 +186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+    - {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
 --- !u!1 &1144118617361926726 stripped
@@ -201,3 +210,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5.42
+--- !u!58 &6551026870299499618
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144118617361926726}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 6.3

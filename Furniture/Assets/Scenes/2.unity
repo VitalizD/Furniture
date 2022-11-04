@@ -674,6 +674,18 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: -3.51
       objectReference: {fileID: 0}
+    - target: {fileID: 6021347205300813518, guid: 0ae3f5ea343f57e4d81652cf27e04611, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021347205300813518, guid: 0ae3f5ea343f57e4d81652cf27e04611, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021347205300813518, guid: 0ae3f5ea343f57e4d81652cf27e04611, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6021347205300813519, guid: 0ae3f5ea343f57e4d81652cf27e04611, type: 3}
       propertyPath: m_RootOrder
       value: -1

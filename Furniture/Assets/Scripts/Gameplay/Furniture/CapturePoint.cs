@@ -24,23 +24,6 @@ namespace Gameplay.Furniture
             SetOpacity(_initOpacity);
         }
 
-        private void OnMouseDown()
-        {
-            _furniture.SetCapturePoint(GetMousePosition());
-            SetOpacity(1f);
-        }
-
-        private void OnMouseDrag()
-        {
-            _furniture.Drag(GetMousePosition());
-        }
-
-        private void OnMouseUp()
-        {
-            _furniture.RemoveCapturePoint();
-            SetOpacity(_initOpacity);
-        }
-
         private void SetOpacity(float value) => _spriteRenderer.color = new Color(_spriteRenderer.color.r, 
             _spriteRenderer.color.g, _spriteRenderer.color.b, value);
 

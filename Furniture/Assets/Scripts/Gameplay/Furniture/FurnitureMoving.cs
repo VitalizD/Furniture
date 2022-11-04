@@ -14,7 +14,7 @@ namespace Gameplay.Furniture
         private SpriteRenderer _spriteRenderer;
 
         private Rigidbody2D _movingPoint = null;
-        private CapturePoint _currentCapturePoint = null;
+        private GameObject _currentCapturePoint = null;
         private Color _initColor;
         private float _fixedZPosition;
         private float _initWeight;
@@ -35,45 +35,7 @@ namespace Gameplay.Furniture
         public void SetLock(bool value)
         {
             _locked = value;
-            SetActiveCapturePoints(!value);
-        }
-
-        public void SetCapturePoint(Vector2 point)
-        {
-            if (_locked)
-                return;
-
-            _hingeJoint2D.enabled = true;
-            _movingPoint = Instantiate(GameStorage.Instanse.MovingCenter, point, Quaternion.identity)
-                .GetComponent<Rigidbody2D>();
-            _hingeJoint2D.connectedBody = _movingPoint;
-            _hingeJoint2D.anchor = transform.InverseTransformPoint(_movingPoint.transform.position);
-        }
-
-        public void RemoveCapturePoint()
-        {
-            if (_movingPoint == null || _locked)
-                return;
-
-            Destroy(_movingPoint.gameObject);
-            _hingeJoint2D.anchor = Vector2.zero;
-            _hingeJoint2D.enabled = false;
-        }
-
-        public void Drag(Vector2 toPoint)
-        {
-            if (_movingPoint == null || _locked)
-                return;
-
-            var followPosition = new Vector3(toPoint.x, toPoint.y, 0f);
-            _movingPoint.AddForce((followPosition - _movingPoint.transform.position) * _force);
-        }
-
-        public void SetActiveCapturePoints(bool value)
-        {
-            _currentCapturePoint = null;
-            foreach (Transform child in transform)
-                child.gameObject.SetActive(value);
+            Destroy(_currentCapturePoint);
         }
 
         private void Awake()
@@ -81,8 +43,9 @@ namespace Gameplay.Furniture
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _hingeJoint2D = GetComponent<HingeJoint2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _hingeJoint2D.enabled = false;
             _mainCamera = Camera.main;
+
+            _hingeJoint2D.enabled = false;
             _initColor = _spriteRenderer.color;
             _fixedZPosition = transform.position.z;
             _initWeight = _rigidbody2D.mass;
@@ -107,38 +70,44 @@ namespace Gameplay.Furniture
 
         private void OnMouseDown()
         {
-            var capturePoint = GetCapturePoint();
-            if (capturePoint != null)
-            {
-                _currentCapturePoint = capturePoint;
-                capturePoint.SendMessage("OnMouseDown");
-            }
+            if (_locked)
+                return;
+
+            _hingeJoint2D.enabled = true;
+            var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+            _movingPoint = Instantiate(GameStorage.Instanse.MovingCenter, mousePos, Quaternion.identity)
+                .GetComponent<Rigidbody2D>();
+            _currentCapturePoint = Instantiate(GameStorage.Instanse.CapturePoint, new Vector3(mousePos.x, mousePos.y, transform.position.z - 1f), Quaternion.identity, transform);
+
+            var capturePointScale = GameStorage.Instanse.CapturePointScale;
+            _currentCapturePoint.transform.localScale = Vector3.one;
+            _currentCapturePoint.transform.localScale = new Vector3(capturePointScale/_currentCapturePoint.transform.lossyScale.x, 
+                capturePointScale/ _currentCapturePoint.transform.lossyScale.y, capturePointScale/ _currentCapturePoint.transform.lossyScale.z);
+
+            _hingeJoint2D.connectedBody = _movingPoint;
+            _hingeJoint2D.anchor = transform.InverseTransformPoint(_movingPoint.transform.position);
         }
 
         private void OnMouseDrag()
         {
-            if (_currentCapturePoint == null)
+            if (_movingPoint == null || _locked)
                 return;
 
-            _currentCapturePoint.SendMessage("OnMouseDrag");
+            var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var followPosition = new Vector3(mousePos.x, mousePos.y, 0f);
+            _movingPoint.AddForce((followPosition - _movingPoint.transform.position) * _force);
         }
 
         private void OnMouseUp()
         {
-            if (_currentCapturePoint == null)
+            if (_movingPoint == null || _locked)
                 return;
 
-            _currentCapturePoint.SendMessage("OnMouseUp");
-            _currentCapturePoint = null;
-        }
-
-        private CapturePoint GetCapturePoint()
-        {
-            var mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            var hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-            if (Physics2D.Raycast(mousePosition, Vector2.zero))
-                return hit.collider.GetComponent<CapturePoint>();
-            return null;
+            Destroy(_movingPoint.gameObject);
+            Destroy(_currentCapturePoint);
+            _hingeJoint2D.anchor = Vector2.zero;
+            _hingeJoint2D.enabled = false;
         }
     }
 }
