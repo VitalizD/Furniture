@@ -96,7 +96,7 @@ namespace Gameplay.Furniture
 
             var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             var followPosition = new Vector3(mousePos.x, mousePos.y, 0f);
-            _movingPoint.AddForce((followPosition - _movingPoint.transform.position) * _force);
+            _movingPoint.AddForce(_force * Time.fixedDeltaTime * (followPosition - _movingPoint.transform.position));
         }
 
         private void OnMouseUp()
