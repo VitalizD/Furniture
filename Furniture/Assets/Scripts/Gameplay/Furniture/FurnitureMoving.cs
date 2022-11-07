@@ -66,7 +66,7 @@ namespace Gameplay.Furniture
                 return;
 
             var followPosition = new Vector3(toPoint.x, toPoint.y, 0f);
-            _movingPoint.AddForce((followPosition - _movingPoint.transform.position) * _force);
+            _movingPoint.AddForce((followPosition - _movingPoint.transform.position) * _force * Time.fixedDeltaTime);
         }
 
         public void SetActiveCapturePoints(bool value)
@@ -86,6 +86,8 @@ namespace Gameplay.Furniture
             _initColor = _spriteRenderer.color;
             _fixedZPosition = transform.position.z;
             _initWeight = _rigidbody2D.mass;
+
+            SetSameScaleToCapturePoints();
         }
 
         private void Update()
@@ -139,6 +141,18 @@ namespace Gameplay.Furniture
             if (Physics2D.Raycast(mousePosition, Vector2.zero))
                 return hit.collider.GetComponent<CapturePoint>();
             return null;
+        }
+
+        private void SetSameScaleToCapturePoints()
+        {
+            var capturePoints = transform.GetComponentsInChildren<CapturePoint>();
+            var capturePointScale = GameStorage.Instanse.CapturePointScale;
+            foreach (var capturePoint in capturePoints)
+            {
+                capturePoint.transform.localScale = Vector3.one;
+                capturePoint.transform.localScale = new Vector3(capturePointScale / capturePoint.transform.lossyScale.x,
+                    capturePointScale / capturePoint.transform.lossyScale.y, capturePointScale / capturePoint.transform.lossyScale.z);
+            }
         }
     }
 }
