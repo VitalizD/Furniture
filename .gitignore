@@ -39,10 +39,4 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
-Furniture/Logs/AssetImportWorker0-prev.log
-Furniture/Logs/AssetImportWorker0.log
-Furniture/Logs/AssetImportWorker1-prev.log
-Furniture/Logs/AssetImportWorker1.log
-Furniture/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
-Furniture/UserSettings/Layouts/default-2022.dwlt
-Furniture/Logs/shadercompiler-AssetImportWorker0.log
+*.log
