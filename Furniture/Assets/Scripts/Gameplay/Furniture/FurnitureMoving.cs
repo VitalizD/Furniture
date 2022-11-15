@@ -22,6 +22,7 @@ namespace Gameplay.Furniture
         private bool _locked = false;
 
         public static event Action FurnitureCollided;
+        public static event Action FurnitureCaptured;
 
         public int PlaceHash { get; set; }
 
@@ -89,6 +90,8 @@ namespace Gameplay.Furniture
 
             _hingeJoint2D.connectedBody = _movingPoint;
             _hingeJoint2D.anchor = transform.InverseTransformPoint(_movingPoint.transform.position);
+
+            FurnitureCaptured?.Invoke();
         }
 
         private void OnMouseDrag()

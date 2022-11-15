@@ -16,14 +16,18 @@ namespace EventHandlers
 
         private void OnEnable()
         {
-            FurniturePlace.FurnitureInPlaced += Add;
+            FurniturePlace.FurnitureInPlaced += AddToFurnitureCounter;
+            Star.StarLost += LoseStar;
         }
 
         private void OnDisable()
         {
-            FurniturePlace.FurnitureInPlaced -= Add;
+            FurniturePlace.FurnitureInPlaced -= AddToFurnitureCounter;
+            Star.StarLost -= LoseStar;
         }
 
-        private void Add(int count) => _progresCounter.Add(count);
+        private void AddToFurnitureCounter(int count) => _progresCounter.AddToFurnitureCounter(count);
+
+        private void LoseStar() => _progresCounter.AddStars(-1);
     }
 }
