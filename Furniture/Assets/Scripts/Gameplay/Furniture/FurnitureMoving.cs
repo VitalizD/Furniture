@@ -14,7 +14,7 @@ namespace Gameplay.Furniture
         private SpriteRenderer _spriteRenderer;
 
         private Rigidbody2D _movingPoint = null;
-        private GameObject _currentCapturePoint = null;
+        private GameObject _visualPoint = null;
         private Color _initColor;
         private float _fixedZPosition;
         private float _initWeight;
@@ -35,7 +35,7 @@ namespace Gameplay.Furniture
         public void SetLock(bool value)
         {
             _locked = value;
-            Destroy(_currentCapturePoint);
+            Destroy(_visualPoint);
         }
 
         private void Awake()
@@ -78,12 +78,12 @@ namespace Gameplay.Furniture
 
             _movingPoint = Instantiate(GameStorage.Instanse.MovingCenter, mousePos, Quaternion.identity)
                 .GetComponent<Rigidbody2D>();
-            _currentCapturePoint = Instantiate(GameStorage.Instanse.CapturePoint, new Vector3(mousePos.x, mousePos.y, transform.position.z - 1f), Quaternion.identity, transform);
+            _visualPoint = Instantiate(GameStorage.Instanse.CapturePoint, new Vector3(mousePos.x, mousePos.y, transform.position.z - 1f), Quaternion.identity, transform);
 
             var capturePointScale = GameStorage.Instanse.CapturePointScale;
-            _currentCapturePoint.transform.localScale = Vector3.one;
-            _currentCapturePoint.transform.localScale = new Vector3(capturePointScale/_currentCapturePoint.transform.lossyScale.x, 
-                capturePointScale/ _currentCapturePoint.transform.lossyScale.y, capturePointScale/ _currentCapturePoint.transform.lossyScale.z);
+            _visualPoint.transform.localScale = Vector3.one;
+            _visualPoint.transform.localScale = new Vector3(capturePointScale/_visualPoint.transform.lossyScale.x, 
+                capturePointScale/ _visualPoint.transform.lossyScale.y, capturePointScale/ _visualPoint.transform.lossyScale.z);
 
             _hingeJoint2D.connectedBody = _movingPoint;
             _hingeJoint2D.anchor = transform.InverseTransformPoint(_movingPoint.transform.position);
@@ -96,7 +96,7 @@ namespace Gameplay.Furniture
 
             var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             var followPosition = new Vector3(mousePos.x, mousePos.y, 0f);
-            _movingPoint.AddForce(_force * Time.fixedDeltaTime * (followPosition - _movingPoint.transform.position));
+            _movingPoint.AddForce(_force * (followPosition - _movingPoint.transform.position));
         }
 
         private void OnMouseUp()
@@ -105,7 +105,7 @@ namespace Gameplay.Furniture
                 return;
 
             Destroy(_movingPoint.gameObject);
-            Destroy(_currentCapturePoint);
+            Destroy(_visualPoint);
             _hingeJoint2D.anchor = Vector2.zero;
             _hingeJoint2D.enabled = false;
         }

@@ -92,10 +92,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1cf594458ec2bf4489d3d9ebed0fcb3c, type: 3}
-    - target: {fileID: 2025175168416880354, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
-      propertyPath: _force
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 2025175168416880355, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 1.08
@@ -131,10 +127,6 @@ PrefabInstance:
     - target: {fileID: 2025175168416880381, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_Name
       value: Sofa
-      objectReference: {fileID: 0}
-    - target: {fileID: 2025175168416880382, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
-      propertyPath: m_Mass
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3268813163173090689, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_LocalScale.x
