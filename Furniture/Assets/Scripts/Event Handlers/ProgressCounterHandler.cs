@@ -1,17 +1,17 @@
 using UnityEngine;
 using Gameplay.Furniture;
-using UI;
+using Gameplay.Counters;
 
 namespace EventHandlers
 {
-    [RequireComponent(typeof(ProgressBar))]
-    public class UpdateProgressBarHandler : MonoBehaviour
+    [RequireComponent(typeof(ProgressCounter))]
+    public class ProgressCounterHandler : MonoBehaviour
     {
-        private ProgressBar _progressBar;
+        private ProgressCounter _progresCounter;
 
         private void Awake()
         {
-            _progressBar = GetComponent<ProgressBar>();
+            _progresCounter = GetComponent<ProgressCounter>();
         }
 
         private void OnEnable()
@@ -24,6 +24,6 @@ namespace EventHandlers
             FurniturePlace.FurnitureInPlaced -= Add;
         }
 
-        private void Add(int count) => _progressBar.Add(count);
+        private void Add(int count) => _progresCounter.Add(count);
     }
 }

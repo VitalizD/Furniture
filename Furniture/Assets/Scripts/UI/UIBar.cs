@@ -10,13 +10,17 @@ namespace UI
         [SerializeField] private TextMeshProUGUI valueText;
         [SerializeField] private TextMeshProUGUI title;
 
+        public float Value { get => bar.fillAmount; }
+
         public bool Filled { get => bar.fillAmount >= 0.99f; }
 
-        /// <param name="value">От 0 до 100</param>
+        public bool Empty { get => bar.fillAmount <= 0.01f; }
+
+        /// <param name="value">От 0 до 1</param>
         public void SetValue(float value)
         {
-            value = Mathf.Clamp(value, 0f, 100f);
-            bar.fillAmount = value / 100f;
+            value = Mathf.Clamp(value, 0f, 1f);
+            bar.fillAmount = value;
             if (valueText != null)
                 valueText.text = $"{(int)value} %";
         }

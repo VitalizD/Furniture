@@ -1,14 +1,13 @@
 using UnityEngine;
 using Gameplay.Furniture;
+using TMPro;
 
-namespace UI
+namespace Gameplay.Counters
 {
-    [RequireComponent(typeof(UIBar))]
-    public class ProgressBar : MonoBehaviour
+    public class ProgressCounter : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private FurniturePlace[] _places;
-
-        private UIBar _UIBar;
 
         private int _placesCount;
         private int _inPlaces = 0;
@@ -16,14 +15,13 @@ namespace UI
         public void Add(int count)
         {
             _inPlaces = Mathf.Clamp(_inPlaces + count, 0, _placesCount);
-            _UIBar.SetValue((float)_inPlaces / _placesCount * 100f);
+            _text.text = _inPlaces.ToString();
         }
 
         private void Awake()
         {
             _placesCount = _places.Length;
-            _UIBar = GetComponent<UIBar>();
-            _UIBar.SetValue(0);
+            _text.text = "0";
         }
     }
 }

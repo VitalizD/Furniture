@@ -26,7 +26,7 @@ namespace Service
             else
                 Destroy(gameObject);
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
 }

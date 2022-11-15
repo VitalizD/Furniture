@@ -1,5 +1,6 @@
 using UnityEngine;
 using Service;
+using System;
 
 namespace Gameplay.Furniture
 {
@@ -19,6 +20,8 @@ namespace Gameplay.Furniture
         private float _fixedZPosition;
         private float _initWeight;
         private bool _locked = false;
+
+        public static event Action FurnitureCollided;
 
         public int PlaceHash { get; set; }
 
@@ -63,8 +66,7 @@ namespace Gameplay.Furniture
 
             if (_rigidbody2D.velocity.magnitude * _rigidbody2D.mass >= _velocityForDamage)
             {
-                var spawnPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, -10f);
-                Instantiate(GameStorage.Instanse.Bum, spawnPoint, GameStorage.Instanse.Bum.transform.localRotation);
+                Push(collision);
             }
         }
 
@@ -108,6 +110,13 @@ namespace Gameplay.Furniture
             Destroy(_visualPoint);
             _hingeJoint2D.anchor = Vector2.zero;
             _hingeJoint2D.enabled = false;
+        }
+
+        private void Push(Collision2D collision)
+        {
+            var spawnPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, -10f);
+            Instantiate(GameStorage.Instanse.Bum, spawnPoint, GameStorage.Instanse.Bum.transform.localRotation);
+            FurnitureCollided?.Invoke();
         }
     }
 }
