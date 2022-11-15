@@ -15,13 +15,15 @@ namespace Gameplay.Counters
         public void Add(int count)
         {
             _inPlaces = Mathf.Clamp(_inPlaces + count, 0, _placesCount);
-            _text.text = _inPlaces.ToString();
+            UpdateText();
         }
 
         private void Awake()
         {
             _placesCount = _places.Length;
-            _text.text = "0";
+            UpdateText();
         }
+
+        private void UpdateText() => _text.text = $"{_inPlaces} / {_placesCount}";
     }
 }
