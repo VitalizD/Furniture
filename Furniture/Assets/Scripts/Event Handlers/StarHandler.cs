@@ -16,11 +16,13 @@ namespace EventHandlers
         private void OnEnable()
         {
             StarBar.StarBarChanged += _star.CheckState;
+            StarBar.StarBarEnabled += _star.PlayAppearance;
         }
 
         private void OnDisable()
         {
             StarBar.StarBarChanged -= _star.CheckState;
+            StarBar.StarBarEnabled -= _star.PlayAppearance;
         }
     }
 }

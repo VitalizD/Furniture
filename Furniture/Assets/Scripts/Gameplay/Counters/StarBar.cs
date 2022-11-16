@@ -15,6 +15,7 @@ namespace Gameplay.Counters
         private float _reachedValue = 1f;
 
         public static event Action<float> StarBarChanged;
+        public static event Action StarBarEnabled;
 
         public void Add(float value)
         {
@@ -27,6 +28,13 @@ namespace Gameplay.Counters
         {
             _UIBar = GetComponent<UIBar>();
             _UIBar.SetValue(_currentValue);
+        }
+
+        private void OnEnable()
+        {
+            _currentValue = 1f;
+            _reachedValue = 1f;
+            StarBarEnabled?.Invoke();
         }
 
         private void Update()

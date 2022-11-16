@@ -39,6 +39,12 @@ namespace Gameplay.Counters
             UpdateText();
         }
 
+        private void OnEnable()
+        {
+            _inPlaces = 0;
+            _starsCount = 3;
+        }
+
         private void UpdateText() => _text.text = $"{_inPlaces} / {_placesCount}";
     }
 }

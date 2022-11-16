@@ -1,28 +1,97 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Service
 {
+    [RequireComponent(typeof(CanvasSwitcher))]
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private LevelData[] _tutorialLevels;
         [SerializeField] private LevelData[] _levels;
-        [SerializeField] private int _level = 1;
-        [SerializeField] private int _tutorialLevel = 1;
+        [SerializeField] private int _lastLevel = 1;
+        [SerializeField] private int _lastTutorialLevel = 1;
         [SerializeField] private bool _tutorialFinished = false;
+        [SerializeField] private float _delayBeforeLevelFinishing;
+
+        private CanvasSwitcher _canvasSwitcher;
+
+        private GameObject _currentLevelObject;
+        private int _currentLevel;
 
         public static event Action<int> SetGoalForLevel;
+
+        public void ToHome()
+        {
+            if (!_tutorialFinished && _lastTutorialLevel > _tutorialLevels.Length)
+                FinishTutorial();
+        }
+
+        public void NextLevel()
+        {
+            if (!_tutorialFinished && _lastTutorialLevel > _tutorialLevels.Length)
+                FinishTutorial();
+            
+            if (_tutorialFinished && _lastLevel > _levels.Length)
+                return;
+
+            StartLevel(_tutorialFinished ? _lastLevel : _lastTutorialLevel);
+        }
+
+        public void RestartLevel()
+        {
+            DestroyLevel();
+            StartLevel(_currentLevel);
+        }
+
+        public IEnumerator FinishLevel(int starsCount)
+        {
+            yield return new WaitForSeconds(_delayBeforeLevelFinishing);
+            DestroyLevel();
+            var resultText = _tutorialFinished ? $"Уровень {_currentLevel}\nпройден!" : "Уровень\nпройден!";
+            _canvasSwitcher.SwitchToLevelResults(resultText, starsCount);
+
+            if (_tutorialFinished)
+            {
+                _levels[_lastLevel - 1].SetStars(starsCount);
+                if (_currentLevel == _lastLevel)
+                    ++_lastLevel;
+            }
+            else
+            {
+                if (_currentLevel == _lastTutorialLevel)
+                    ++_lastTutorialLevel;
+            }
+        }
+
+        private void Awake()
+        {
+            _canvasSwitcher = GetComponent<CanvasSwitcher>();
+        }
 
         private void Start()
         {
             NextLevel();
         }
 
-        private void NextLevel()
+        private void StartLevel(int level)
         {
-            var createdLevel = _tutorialFinished ? _levels[_level - 1] : _tutorialLevels[_tutorialLevel - 1];
-            Instantiate(createdLevel.gameObject, Vector3.zero, Quaternion.identity);
+            _canvasSwitcher.SwitchToGameplay();
+            var createdLevel = _tutorialFinished ? _levels[level - 1] : _tutorialLevels[level - 1];
+            _currentLevelObject = Instantiate(createdLevel.gameObject, Vector3.zero, Quaternion.identity);
             SetGoalForLevel?.Invoke(createdLevel.Goal);
+            _currentLevel = level;
+        }
+
+        private void FinishTutorial()
+        {
+            _tutorialFinished = true;
+        }
+
+        private void DestroyLevel()
+        {
+            if (_currentLevelObject != null)
+                Destroy(_currentLevelObject);
         }
     }
 }
