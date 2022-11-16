@@ -16,6 +16,12 @@ namespace Gameplay.Counters
 
         public static event Action<int> LevelFinished;
 
+        public void SetGoal(int value)
+        {
+            _placesCount = value;
+            UpdateText();
+        }
+
         public void AddStars(int count) => _starsCount = Mathf.Clamp(_starsCount += count, 1, 3);
 
         public void AddToFurnitureCounter(int count)

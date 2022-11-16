@@ -1,6 +1,7 @@
 using UnityEngine;
 using Gameplay.Furniture;
 using Gameplay.Counters;
+using Service;
 
 namespace EventHandlers
 {
@@ -18,12 +19,14 @@ namespace EventHandlers
         {
             FurniturePlace.FurnitureInPlaced += AddToFurnitureCounter;
             Star.StarLost += LoseStar;
+            GameManager.SetGoalForLevel += _progresCounter.SetGoal;
         }
 
         private void OnDisable()
         {
             FurniturePlace.FurnitureInPlaced -= AddToFurnitureCounter;
             Star.StarLost -= LoseStar;
+            GameManager.SetGoalForLevel -= _progresCounter.SetGoal;
         }
 
         private void AddToFurnitureCounter(int count) => _progresCounter.AddToFurnitureCounter(count);
