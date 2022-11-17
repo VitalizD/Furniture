@@ -73,7 +73,7 @@ namespace Gameplay.Furniture
 
         private void OnMouseDown()
         {
-            if (_locked)
+            if (_locked || Input.touchCount > 1)
                 return;
 
             _hingeJoint2D.enabled = true;
@@ -96,7 +96,7 @@ namespace Gameplay.Furniture
 
         private void OnMouseDrag()
         {
-            if (_movingPoint == null || _locked)
+            if (_movingPoint == null || _locked || Input.touchCount > 1)
                 return;
 
             var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
