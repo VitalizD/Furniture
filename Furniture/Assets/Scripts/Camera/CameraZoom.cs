@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Gameplay
 {
     [RequireComponent(typeof(Camera))]
-    public class CameraController : MonoBehaviour
+    public class CameraZoom : MonoBehaviour
     {
         [SerializeField] private float _zoomMin;
         [SerializeField] private float _zoomMax;

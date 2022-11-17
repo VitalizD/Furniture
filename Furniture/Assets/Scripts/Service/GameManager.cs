@@ -20,6 +20,7 @@ namespace Service
         private int _currentLevel;
 
         public static event Action<int> SetGoalForLevel;
+        public static event Action LevelStarted;
 
         public void ToHome()
         {
@@ -80,6 +81,7 @@ namespace Service
             var createdLevel = _tutorialFinished ? _levels[level - 1] : _tutorialLevels[level - 1];
             _currentLevelObject = Instantiate(createdLevel.gameObject, Vector3.zero, Quaternion.identity);
             SetGoalForLevel?.Invoke(createdLevel.Goal);
+            LevelStarted?.Invoke();
             _currentLevel = level;
         }
 

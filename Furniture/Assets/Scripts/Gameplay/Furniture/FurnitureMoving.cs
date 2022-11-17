@@ -23,6 +23,7 @@ namespace Gameplay.Furniture
 
         public static event Action FurnitureCollided;
         public static event Action FurnitureCaptured;
+        public static event Action FurnitureReleased;
 
         public int PlaceHash { get; set; }
 
@@ -113,6 +114,9 @@ namespace Gameplay.Furniture
             Destroy(_visualPoint);
             _hingeJoint2D.anchor = Vector2.zero;
             _hingeJoint2D.enabled = false;
+
+
+            FurnitureReleased?.Invoke();
         }
 
         private void Push(Collision2D collision)
