@@ -18,6 +18,7 @@ namespace Service
 
         private GameObject _currentLevelObject;
         private int _currentLevel;
+        private int _starsCount = 0;
 
         public static event Action<int> SetGoalForLevel;
         public static event Action LevelStarted;
@@ -54,14 +55,21 @@ namespace Service
 
             if (_tutorialFinished)
             {
-                _levels[_lastLevel - 1].SetStars(starsCount);
+                RecalculateStarsCount(_levels[_lastLevel - 1]);
                 if (_currentLevel == _lastLevel)
                     ++_lastLevel;
             }
             else
             {
+                RecalculateStarsCount(_tutorialLevels[_lastTutorialLevel - 1]);
                 if (_currentLevel == _lastTutorialLevel)
                     ++_lastTutorialLevel;
+            }
+
+            void RecalculateStarsCount(LevelData inLevel)
+            {
+                _starsCount += Mathf.Clamp(starsCount - inLevel.StarsCount, 0, 3);
+                inLevel.StarsCount = starsCount;
             }
         }
 

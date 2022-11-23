@@ -1657,8 +1657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f925f3ab521c0f40bf0b27ed0242a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLimit: 0
-  bottomLimit: 0
+  topLimit: 1
+  bottomLimit: -1
   leftLimit: -2
   rightLimit: 2
 --- !u!114 &799157731
