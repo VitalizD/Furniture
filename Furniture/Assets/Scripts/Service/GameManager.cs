@@ -55,13 +55,13 @@ namespace Service
 
             if (_tutorialFinished)
             {
-                RecalculateStarsCount(_levels[_lastLevel - 1]);
+                RecalculateStarsCount(_levels[_currentLevel - 1]);
                 if (_currentLevel == _lastLevel)
                     ++_lastLevel;
             }
             else
             {
-                RecalculateStarsCount(_tutorialLevels[_lastTutorialLevel - 1]);
+                RecalculateStarsCount(_tutorialLevels[_currentLevel - 1]);
                 if (_currentLevel == _lastTutorialLevel)
                     ++_lastTutorialLevel;
             }

@@ -9,10 +9,12 @@ namespace EventHandlers
     public class CameraHandler : MonoBehaviour
     {
         private CameraMoving _cameraMoving;
+        private CameraBackground _cameraBackground;
 
         private void Awake()
         {
             _cameraMoving = GetComponent<CameraMoving>();
+            _cameraBackground = GetComponent<CameraBackground>();
         }
 
         private void OnEnable()
@@ -33,7 +35,11 @@ namespace EventHandlers
 
         private void OnFurnitureCaptured() => _cameraMoving.Locked = true;
 
-        private void OnLevelStarted() => _cameraMoving.ResetPosition();
+        private void OnLevelStarted()
+        {
+            _cameraMoving.ResetPosition();
+            _cameraBackground.SetPreparedColor();
+        }
 
         //private void OnFurnitureReleased() => _cameraMoving.Locked = false;
 
