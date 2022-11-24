@@ -14,14 +14,20 @@ namespace EventHandlers
             _tutorial = GetComponent<Tutorial>();
         }
 
-        private void OnEnable()
-        {
-            FurnitureMoving.FurnitureCaptured += _tutorial.Deactivate;
-        }
+        //private void OnEnable()
+        //{
+        //    FurnitureMoving.FurnitureCaptured += _tutorial.Deactivate;
+        //}
 
-        private void OnDisable()
+        //private void OnDisable()
+        //{
+        //    FurnitureMoving.FurnitureCaptured -= _tutorial.Deactivate;
+        //}
+
+        private void Update()
         {
-            FurnitureMoving.FurnitureCaptured -= _tutorial.Deactivate;
+            if (Input.GetMouseButtonDown(0))
+                _tutorial.Deactivate();
         }
     }
 }
