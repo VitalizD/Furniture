@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1150739830452912817
+--- !u!1001 &7254740498769107993
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2025175168416880352, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880352, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.90000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880352, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.90000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880352, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.90000004
       objectReference: {fileID: 0}
     - target: {fileID: 2025175168416880352, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52,77 +64,74 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880352, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2025175168416880353, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1235f18cc4d75424d93094e97231eab2, type: 3}
+      objectReference: {fileID: 21300000, guid: 4428c10742055b846bb64791944edc50, type: 3}
     - target: {fileID: 2025175168416880355, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0
+      value: -0.06404942
       objectReference: {fileID: 0}
     - target: {fileID: 2025175168416880355, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0
+      value: -0.48861724
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Size.x
+      value: 3.0622816
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3135225
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.006967306
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0034835935
       objectReference: {fileID: 0}
     - target: {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.59
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.63
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 2025175168416880381, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_Name
-      value: Desk Chair
+      value: Bath
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Size.x
+      value: 3.5222406
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Size.y
+      value: 1.751636
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0054618716
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.59
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.63
+      value: 1.38
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2025175168416880380, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
-    - {fileID: 4559218960631278788, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
---- !u!1 &1432955926173979724 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2025175168416880381, guid: 987b06bd02e56d143a157f3701108d43, type: 3}
-  m_PrefabInstance: {fileID: 1150739830452912817}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &2174574532932196920
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432955926173979724}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.315
---- !u!58 &6637928232300159666
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432955926173979724}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0073348284, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5

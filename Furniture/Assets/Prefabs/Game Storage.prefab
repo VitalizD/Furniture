@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1748838322656411145
 MonoBehaviour:
@@ -47,4 +47,4 @@ MonoBehaviour:
   _bum: {fileID: 723329368007873192, guid: ddd2ebc0916bef445b53117ba21d898e, type: 3}
   _movingCenter: {fileID: 614213573030408761, guid: 4250b8fa454bb3e4dae9e8736918a6ec, type: 3}
   _capturePoint: {fileID: 2131671045130870555, guid: 63dc1febacb1bf048b902255e946a39f, type: 3}
-  _capturePointScale: 0.1
+  _capturePointScale: 0.07

@@ -45,6 +45,7 @@ namespace EventHandlers
         {
             _cameraMoving.ResetPosition();
             _cameraBackground.SetPreparedColor();
+            _cameraZoom.SetInitialZoom();
         }
 
         //private void OnFurnitureReleased() => _cameraMoving.Locked = false;
