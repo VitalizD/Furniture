@@ -1,5 +1,7 @@
 using CameraEngine;
+using Gameplay;
 using Gameplay.Furniture;
+using Prelevel;
 using Service;
 using UnityEngine;
 
@@ -10,17 +12,20 @@ namespace EventHandlers
     {
         private CameraMoving _cameraMoving;
         private CameraBackground _cameraBackground;
+        private CameraZoom _cameraZoom;
 
         private void Awake()
         {
             _cameraMoving = GetComponent<CameraMoving>();
             _cameraBackground = GetComponent<CameraBackground>();
+            _cameraZoom = GetComponent<CameraZoom>();
         }
 
         private void OnEnable()
         {
             FurnitureMoving.FurnitureCaptured += OnFurnitureCaptured;
             GameManager.LevelStarted += OnLevelStarted;
+            CameraMinZoom.SetMinCameraZoom += _cameraZoom.SetMinZoom;
             //FurnitureMoving.FurnitureReleased += OnFurnitureReleased;
             //FurniturePlace.FurnitureInPlaced += OnFurnitureReleased;
         }
@@ -29,6 +34,7 @@ namespace EventHandlers
         {
             FurnitureMoving.FurnitureCaptured -= OnFurnitureCaptured;
             GameManager.LevelStarted -= OnLevelStarted;
+            CameraMinZoom.SetMinCameraZoom -= _cameraZoom.SetMinZoom;
             //FurnitureMoving.FurnitureReleased -= OnFurnitureReleased;
             //FurniturePlace.FurnitureInPlaced -= OnFurnitureReleased;
         }

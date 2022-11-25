@@ -11,6 +11,12 @@ namespace Gameplay
 
         private Camera _camera;
 
+        public void SetZoom(float value) => _camera.orthographicSize = Mathf.Clamp(value, _zoomMin, _zoomMax);
+
+        public void SetMinZoom() => _camera.orthographicSize = _zoomMin;
+
+        public void SetMaxZoom() => _camera.orthographicSize = _zoomMax;
+
         private void Awake()
         {
             _camera = GetComponent<Camera>();

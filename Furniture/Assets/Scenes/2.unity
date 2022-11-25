@@ -1118,7 +1118,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 799157726}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 99
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1660,8 +1660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f925f3ab521c0f40bf0b27ed0242a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLimit: 1
-  bottomLimit: -1
+  topLimit: 2
+  bottomLimit: -2
   leftLimit: -2
   rightLimit: 2
 --- !u!114 &799157731
@@ -2687,7 +2687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2696212457792533419, guid: b0712130757b3464991bfba5c6c9195d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 2696212457792533419, guid: b0712130757b3464991bfba5c6c9195d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3060,7 +3060,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 799157726}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 99
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0

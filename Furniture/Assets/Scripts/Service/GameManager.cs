@@ -90,6 +90,7 @@ namespace Service
             _currentLevelObject = Instantiate(createdLevel.gameObject, Vector3.zero, Quaternion.identity);
             SetGoalForLevel?.Invoke(createdLevel.Goal);
             LevelStarted?.Invoke();
+            createdLevel.ExecutePrelevelScripts();
             _currentLevel = level;
         }
 
