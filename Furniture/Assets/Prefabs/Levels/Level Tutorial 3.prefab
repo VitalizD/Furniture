@@ -80,6 +80,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 8093584448786077476}
     m_Modifications:
+    - target: {fileID: 6121479672855543500, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121479672855543500, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.63
+      objectReference: {fileID: 0}
     - target: {fileID: 6121479672855543501, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
       propertyPath: m_Name
       value: Chair
@@ -128,6 +136,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -111.17
       objectReference: {fileID: 0}
+    - target: {fileID: 6121479672855543505, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121479672855543505, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_Size.y
+      value: 0.63
+      objectReference: {fileID: 0}
     - target: {fileID: 6121479672855543507, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.78
@@ -135,6 +151,14 @@ PrefabInstance:
     - target: {fileID: 6121479672855543507, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623436971288364276, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623436971288364276, guid: 7b0a2033174c0624ea6ae7794fba1119, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.63
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -463,6 +487,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 8093584449221716435}
     m_Modifications:
     - target: {fileID: 6584369967494159924, guid: 5dd1150c4ea210d4283c5f81a902023e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584369967494159924, guid: 5dd1150c4ea210d4283c5f81a902023e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584369967494159924, guid: 5dd1150c4ea210d4283c5f81a902023e, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1235f18cc4d75424d93094e97231eab2, type: 3}
@@ -569,6 +601,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 4c777764ce828f441a9ef9f607a353d3, type: 3}
+    - target: {fileID: 6584369967494159924, guid: 5dd1150c4ea210d4283c5f81a902023e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6584369968371785062, guid: 5dd1150c4ea210d4283c5f81a902023e, type: 3}
       propertyPath: m_Name
       value: SP Table
