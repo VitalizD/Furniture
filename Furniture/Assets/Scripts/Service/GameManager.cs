@@ -33,9 +33,9 @@ namespace Service
         {
             if (!_tutorialFinished && _lastTutorialLevel > _tutorialLevels.Length)
                 FinishTutorial();
-            
+
             if (_tutorialFinished && _lastLevel > _levels.Length)
-                return;
+                _lastLevel = 1;
 
             StartLevel(_tutorialFinished ? _lastLevel : _lastTutorialLevel);
         }

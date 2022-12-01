@@ -1131,7 +1131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &557369696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   - {fileID: 8219999438823634034, guid: 2f514f919b27c794fb1a3854d62bab46, type: 3}
   - {fileID: 7485068405166022373, guid: 49fa0a13446c16c43b21a9683309b581, type: 3}
   - {fileID: 791534021094262421, guid: bee4631221cfa78428a9cda2520b8b92, type: 3}
-  _lastLevel: 6
+  _lastLevel: 7
   _lastTutorialLevel: 1
   _tutorialFinished: 1
   _delayBeforeLevelFinishing: 1
@@ -2839,7 +2839,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C 1 \n\u043F\u0440\u043E\u0439\u0434\u0435\u043D!"
+  m_text: "\u0422\u0440\u0435\u043D\u0438\u0440\u043E\u0432\u043E\u0447\u043D\u044B\u0439
+    \u0443\u0440\u043E\u0432\u0435\u043D\u044C\n\u043F\u0440\u043E\u0439\u0434\u0435\u043D!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2874,7 +2875,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

@@ -17,11 +17,13 @@ namespace EventHandlers
         private void OnEnable()
         {
             LevelWithTimer.StartTimer += _timer.Activate;
+            LevelWithTimer.StopTimer += _timer.Stop;
         }
 
         private void OnDisable()
         {
             LevelWithTimer.StartTimer -= _timer.Activate;
+            LevelWithTimer.StopTimer -= _timer.Stop;
         }
     }
 }

@@ -1,4 +1,5 @@
 using Gameplay;
+using Gameplay.Counters;
 using System;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Prelevel
         [SerializeField] private int _time;
 
         public static event Action<int> StartTimer;
+        public static event Action StopTimer;
 
         public void Execute()
         {
@@ -18,16 +20,23 @@ namespace Prelevel
         private void OnEnable()
         {
             Timer.TimeIsUp += FinishLevel;
+            ProgressCounter.LevelFinished += RemoveTimer;
         }
 
         private void OnDisable()
         {
             Timer.TimeIsUp -= FinishLevel;
+            ProgressCounter.LevelFinished -= RemoveTimer;
         }
 
         private void FinishLevel()
         {
 
+        }
+
+        private void RemoveTimer(int arg)
+        {
+            StopTimer?.Invoke();
         }
     }
 }
