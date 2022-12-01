@@ -1209,9 +1209,10 @@ MonoBehaviour:
   - {fileID: 2661560907288387884, guid: 29c1f7bd2f749564ba356602f4147bd0, type: 3}
   - {fileID: 6319463412856646538, guid: 42801369add5c564793d7ddae40a3d6b, type: 3}
   - {fileID: 6709509531645138023, guid: cfe924db8d80a6b40b646b3891adba8e, type: 3}
-  _lastLevel: 1
+  - {fileID: 6232342111591246800, guid: 756f27d17ea0e6f4f8115570a3501b3f, type: 3}
+  _lastLevel: 4
   _lastTutorialLevel: 1
-  _tutorialFinished: 0
+  _tutorialFinished: 1
   _delayBeforeLevelFinishing: 1
 --- !u!114 &688957969
 MonoBehaviour:
