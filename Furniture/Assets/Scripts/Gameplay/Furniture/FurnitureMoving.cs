@@ -41,6 +41,7 @@ namespace Gameplay.Furniture
         {
             _locked = value;
             Destroy(_visualPoint);
+            Destroy(_movingPoint.gameObject);
         }
 
         private void Awake()
@@ -114,7 +115,6 @@ namespace Gameplay.Furniture
             Destroy(_visualPoint);
             _hingeJoint2D.anchor = Vector2.zero;
             _hingeJoint2D.enabled = false;
-
 
             FurnitureReleased?.Invoke();
         }
