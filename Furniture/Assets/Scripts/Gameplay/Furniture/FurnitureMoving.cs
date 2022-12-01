@@ -40,8 +40,13 @@ namespace Gameplay.Furniture
         public void SetLock(bool value)
         {
             _locked = value;
-            Destroy(_visualPoint);
-            Destroy(_movingPoint.gameObject);
+
+            if (value)
+            {
+                Destroy(_visualPoint);
+                if (_movingPoint != null)
+                    Destroy(_movingPoint.gameObject);
+            }
         }
 
         private void Awake()
@@ -78,22 +83,7 @@ namespace Gameplay.Furniture
             if (_locked || Input.touchCount > 1)
                 return;
 
-            _hingeJoint2D.enabled = true;
-            var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-            _movingPoint = Instantiate(GameStorage.Instanse.MovingCenter, mousePos, Quaternion.identity)
-                .GetComponent<Rigidbody2D>();
-            _visualPoint = Instantiate(GameStorage.Instanse.CapturePoint, new Vector3(mousePos.x, mousePos.y, transform.position.z - 1f), Quaternion.identity, transform);
-
-            var capturePointScale = GameStorage.Instanse.CapturePointScale;
-            _visualPoint.transform.localScale = Vector3.one;
-            _visualPoint.transform.localScale = new Vector3(capturePointScale/_visualPoint.transform.lossyScale.x, 
-                capturePointScale/ _visualPoint.transform.lossyScale.y, capturePointScale/ _visualPoint.transform.lossyScale.z);
-
-            _hingeJoint2D.connectedBody = _movingPoint;
-            _hingeJoint2D.anchor = transform.InverseTransformPoint(_movingPoint.transform.position);
-
-            FurnitureCaptured?.Invoke();
+            Capture();
         }
 
         private void OnMouseDrag()
@@ -101,9 +91,7 @@ namespace Gameplay.Furniture
             if (_movingPoint == null || _locked || Input.touchCount > 1)
                 return;
 
-            var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            var followPosition = new Vector3(mousePos.x, mousePos.y, 0f);
-            _movingPoint.AddForce(_force * (followPosition - _movingPoint.transform.position));
+            Drag();
         }
 
         private void OnMouseUp()
@@ -117,6 +105,48 @@ namespace Gameplay.Furniture
             _hingeJoint2D.enabled = false;
 
             FurnitureReleased?.Invoke();
+        }
+
+        private void Capture()
+        {
+            _hingeJoint2D.enabled = true;
+            var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+            _movingPoint = Instantiate(GameStorage.Instanse.MovingCenter, mousePos, Quaternion.identity)
+                .GetComponent<Rigidbody2D>();
+            _visualPoint = Instantiate(GameStorage.Instanse.CapturePoint, new Vector3(mousePos.x, mousePos.y,
+                transform.position.z - 1f), Quaternion.identity, transform);
+
+            AdaptVisualPointScale();
+
+            _hingeJoint2D.connectedBody = _movingPoint;
+            _hingeJoint2D.anchor = transform.InverseTransformPoint(_movingPoint.transform.position);
+
+            FurnitureCaptured?.Invoke();
+        }
+
+        private void AdaptVisualPointScale()
+        {
+            var capturePointScale = GameStorage.Instanse.CapturePointScale;
+            _visualPoint.transform.localScale = Vector3.one;
+            _visualPoint.transform.localScale = new Vector3(capturePointScale / _visualPoint.transform.lossyScale.x,
+                capturePointScale / _visualPoint.transform.lossyScale.y, capturePointScale / _visualPoint.transform.lossyScale.z);
+        }
+
+        private void Drag()
+        {
+            var mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var followPosition = new Vector3(mousePos.x, mousePos.y, 0f);
+            var movingPointPosition = _movingPoint.transform.position;
+
+            var rayDirection = followPosition - movingPointPosition;
+            var wallPosition = (Vector3)Physics2D.Raycast(movingPointPosition, rayDirection, Mathf.Infinity,
+                LayerMask.GetMask(Layers.Wall.ToString())).centroid;
+            var distanceToWall = Vector2.Distance(wallPosition, movingPointPosition);
+            var distanceToFollowPoint = Vector2.Distance(followPosition, movingPointPosition);
+
+            _movingPoint.AddForce(_force * (distanceToWall > distanceToFollowPoint ?
+                (followPosition - movingPointPosition) : (wallPosition - movingPointPosition)));
         }
 
         private void Push(Collision2D collision)

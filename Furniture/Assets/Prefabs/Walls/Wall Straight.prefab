@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4456653158651097214}
   - component: {fileID: 8477784134183775576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6042569301567291904}
   - component: {fileID: 5544413654084413222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Contour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6037435943807869580}
   - component: {fileID: 6254237673931037499}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Contour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5170182043842828386}
   - component: {fileID: 8502100603533366230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall Straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

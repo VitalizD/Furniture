@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5482091103491586767}
   - component: {fileID: 6092038187724699460}
   - component: {fileID: 2896054649801835932}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 909441114095628617}
   - component: {fileID: 94488307970938074}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Contour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5012210042631452349}
   - component: {fileID: 449914429140883697}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Contour (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1279,9 +1279,9 @@ MonoBehaviour:
   - {fileID: 8219999438823634034, guid: 2f514f919b27c794fb1a3854d62bab46, type: 3}
   - {fileID: 7485068405166022373, guid: 49fa0a13446c16c43b21a9683309b581, type: 3}
   - {fileID: 791534021094262421, guid: bee4631221cfa78428a9cda2520b8b92, type: 3}
-  _lastLevel: 7
+  _lastLevel: 1
   _lastTutorialLevel: 1
-  _tutorialFinished: 1
+  _tutorialFinished: 0
   _delayBeforeLevelFinishing: 1
 --- !u!114 &688957969
 MonoBehaviour:
