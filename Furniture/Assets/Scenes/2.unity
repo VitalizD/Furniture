@@ -1212,7 +1212,8 @@ MonoBehaviour:
   - {fileID: 6232342111591246800, guid: 756f27d17ea0e6f4f8115570a3501b3f, type: 3}
   - {fileID: 8219999438823634034, guid: 2f514f919b27c794fb1a3854d62bab46, type: 3}
   - {fileID: 7485068405166022373, guid: 49fa0a13446c16c43b21a9683309b581, type: 3}
-  _lastLevel: 6
+  - {fileID: 791534021094262421, guid: bee4631221cfa78428a9cda2520b8b92, type: 3}
+  _lastLevel: 7
   _lastTutorialLevel: 1
   _tutorialFinished: 1
   _delayBeforeLevelFinishing: 1
