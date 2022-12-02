@@ -48,9 +48,11 @@ namespace Service
 
         public IEnumerator FinishLevel(int starsCount)
         {
-            yield return new WaitForSeconds(_delayBeforeLevelFinishing);
+            yield return new WaitForSeconds(starsCount == 0 ? 0f : _delayBeforeLevelFinishing);
             DestroyLevel();
             var resultText = _tutorialFinished ? $"Уровень {_currentLevel}\nпройден!" : "Уровень\nпройден!";
+            if (starsCount == 0)
+                resultText = $"Уровень {_currentLevel}\nне пройден";
             _canvasSwitcher.SwitchToLevelResults(resultText, starsCount);
 
             if (_tutorialFinished)

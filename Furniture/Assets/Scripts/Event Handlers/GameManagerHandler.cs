@@ -1,4 +1,5 @@
 using Gameplay.Counters;
+using Prelevel;
 using Service;
 using UI.Buttons;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace EventHandlers
             RestartButton.RestartButtonPressed += _gameManager.RestartLevel;
             NextLevelButton.NextLevelButtonPressed += _gameManager.NextLevel;
             HomeButton.HomeButtonPressed += _gameManager.ToHome;
+            LevelWithTimer.LevelLost += OnLevelLost;
         }
 
         private void OnDisable()
@@ -29,8 +31,11 @@ namespace EventHandlers
             RestartButton.RestartButtonPressed -= _gameManager.RestartLevel;
             NextLevelButton.NextLevelButtonPressed -= _gameManager.NextLevel;
             HomeButton.HomeButtonPressed -= _gameManager.ToHome;
+            LevelWithTimer.LevelLost -= OnLevelLost;
         }
 
         private void OnFinishLevel(int starsCount) => StartCoroutine(_gameManager.FinishLevel(starsCount));
+
+        private void OnLevelLost() => StartCoroutine(_gameManager.FinishLevel(0));
     }
 }

@@ -11,6 +11,7 @@ namespace Prelevel
 
         public static event Action<int> StartTimer;
         public static event Action StopTimer;
+        public static event Action LevelLost;
 
         public void Execute()
         {
@@ -19,19 +20,19 @@ namespace Prelevel
 
         private void OnEnable()
         {
-            Timer.TimeIsUp += FinishLevel;
+            Timer.TimeIsUp += DefeatLevel;
             ProgressCounter.LevelFinished += RemoveTimer;
         }
 
         private void OnDisable()
         {
-            Timer.TimeIsUp -= FinishLevel;
+            Timer.TimeIsUp -= DefeatLevel;
             ProgressCounter.LevelFinished -= RemoveTimer;
         }
 
-        private void FinishLevel()
+        private void DefeatLevel()
         {
-
+            LevelLost?.Invoke();
         }
 
         private void RemoveTimer(int arg)
