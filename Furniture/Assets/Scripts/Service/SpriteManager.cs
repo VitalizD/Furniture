@@ -1,35 +1,24 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Animation))]
-public class SpriteManager : MonoBehaviour
+namespace Service
 {
-    private SpriteRenderer SpriteRenderer { get; set; }
-    private Image Image { get; set; }
-    private Animation Animation { get; set; }
-
-    void Awake()
+    [RequireComponent(typeof(SpriteRenderer))]
+    public class SpriteManager : MonoBehaviour
     {
-        SpriteRenderer = GetComponent<SpriteRenderer>();
-        Image = GetComponent<Image>();
-        Animation = GetComponent<Animation>();
-    }
+        [SerializeField] private Sprite[] _sprites;
 
-    public void Play(string animationName)
-    {
-        Animation.Play(animationName);
-    }
+        private SpriteRenderer _spriteRenderer;
 
-    public void SetNextSprite(Sprite sprite)
-    {
-        if (SpriteRenderer != null)
-            SpriteRenderer.sprite = sprite;
-    }
+        public void SetRandomSprite()
+        {
+            if (_sprites == null || _sprites.Length == 0)
+                return;
+            _spriteRenderer.sprite = _sprites[Random.Range(0, _sprites.Length)];
+        }
 
-    public void SetNextImage(Sprite sprite)
-    {
-        if (Image != null)
-            Image.sprite = sprite;
+        private void Awake()
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
 }

@@ -152,8 +152,12 @@ namespace Gameplay.Furniture
         private void Push(Collision2D collision)
         {
             var spawnPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, -10f);
-            Instantiate(GameStorage.Instanse.Bum, spawnPoint, GameStorage.Instanse.Bum.transform.localRotation);
+            var bum = Instantiate(GameStorage.Instanse.Bum, spawnPoint, GameStorage.Instanse.Bum.transform.localRotation)
+                .GetComponent<SpriteManager>();
             FurnitureCollided?.Invoke();
+            if (bum == null)
+                return;
+            bum.SetRandomSprite();
         }
     }
 }
