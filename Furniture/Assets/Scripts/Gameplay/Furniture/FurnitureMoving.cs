@@ -26,6 +26,7 @@ namespace Gameplay.Furniture
         public static event Action FurnitureReleased;
 
         public int PlaceHash { get; set; }
+        public bool PerfectEffect { get; set; } = true;
 
         public void SetSameWeight() => _rigidbody2D.mass = 1f;
 
@@ -46,7 +47,17 @@ namespace Gameplay.Furniture
                 Destroy(_visualPoint);
                 if (_movingPoint != null)
                     Destroy(_movingPoint.gameObject);
+                PerfectEffect = false;
             }
+        }
+
+        public void CheckPerfectEffect(Vector2 spawnPosition)
+        {
+            if (!PerfectEffect)
+                return;
+
+            Instantiate(GameStorage.Instanse.PerfectEffect, 
+                new Vector3(spawnPosition.x, spawnPosition.y, transform.position.z - 5f), Quaternion.identity);
         }
 
         private void Awake()
@@ -158,6 +169,11 @@ namespace Gameplay.Furniture
             if (bum == null)
                 return;
             bum.SetRandomSprite();
+
+            if (collision.gameObject.TryGetComponent<FurnitureMoving>(out var otherFurniture))
+                otherFurniture.PerfectEffect = false;
+
+            PerfectEffect = false;
         }
     }
 }

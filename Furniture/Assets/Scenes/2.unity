@@ -1282,7 +1282,7 @@ MonoBehaviour:
   _lastLevel: 1
   _lastTutorialLevel: 1
   _tutorialFinished: 0
-  _delayBeforeLevelFinishing: 1
+  _delayBeforeLevelFinishing: 2
 --- !u!114 &688957969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2733,6 +2733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Storage
       objectReference: {fileID: 0}
+    - target: {fileID: 1748838322656411145, guid: 3fc884db3e3297e419ff028900246cfe, type: 3}
+      propertyPath: _gameplayCanvas
+      value: 
+      objectReference: {fileID: 557369698}
     - target: {fileID: 1748838322656411146, guid: 3fc884db3e3297e419ff028900246cfe, type: 3}
       propertyPath: m_RootOrder
       value: -1

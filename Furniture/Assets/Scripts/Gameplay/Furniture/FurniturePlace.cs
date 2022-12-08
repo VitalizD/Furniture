@@ -45,8 +45,6 @@ namespace Gameplay.Furniture
                 var target = _targets[i];
                 var minAngle = transform.eulerAngles.z - _requiredAngleSpread;
                 var maxAngle = transform.eulerAngles.z + _requiredAngleSpread;
-                //var targetAngle = target.transform.eulerAngles.z < -15f ?
-                //    (target.transform.eulerAngles.z % 360f) + 360f : target.transform.eulerAngles.z % 360f;
                 var targetAngle = target.transform.rotation.eulerAngles.z;
 
                 if (target.PlaceHash != hash && !busy && Vector2.Distance(transform.position, target.transform.position) <= _requiredDistance
@@ -78,6 +76,7 @@ namespace Gameplay.Furniture
         private void SetInPlace(FurnitureMoving furniture, bool value)
         {
             busy = value;
+            furniture.CheckPerfectEffect(transform.position);
             furniture.SetLock(value);
             FurnitureInPlaced?.Invoke(value ? 1 : -1);
             if (value)
