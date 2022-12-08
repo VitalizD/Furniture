@@ -1131,7 +1131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &557369696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,9 +1279,9 @@ MonoBehaviour:
   - {fileID: 8219999438823634034, guid: 2f514f919b27c794fb1a3854d62bab46, type: 3}
   - {fileID: 7485068405166022373, guid: 49fa0a13446c16c43b21a9683309b581, type: 3}
   - {fileID: 791534021094262421, guid: bee4631221cfa78428a9cda2520b8b92, type: 3}
-  _lastLevel: 7
+  _lastLevel: 1
   _lastTutorialLevel: 1
-  _tutorialFinished: 1
+  _tutorialFinished: 0
   _delayBeforeLevelFinishing: 1
 --- !u!114 &688957969
 MonoBehaviour:
@@ -1888,7 +1888,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _possibleColors:
-  - {r: 1, g: 0.53333336, b: 0.74509805, a: 1}
   - {r: 0.9960785, g: 0.76470596, b: 0.8745099, a: 1}
   - {r: 1, g: 0.9333334, b: 0.65882355, a: 1}
   - {r: 0.6313726, g: 0.95294124, b: 0.9294118, a: 1}

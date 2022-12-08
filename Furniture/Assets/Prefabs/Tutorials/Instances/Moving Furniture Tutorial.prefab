@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1473442719479394615}
   - component: {fileID: 1473442719479394614}
   m_Layer: 0
-  m_Name: Tutorial Sofa
+  m_Name: Tutorial Shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,6 +211,10 @@ PrefabInstance:
     - target: {fileID: 8654310385434630146, guid: 72f2f9bbd3e7c124b982e128ecf38537, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654310385434630146, guid: 72f2f9bbd3e7c124b982e128ecf38537, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8654310385434630147, guid: 72f2f9bbd3e7c124b982e128ecf38537, type: 3}
       propertyPath: m_Name
