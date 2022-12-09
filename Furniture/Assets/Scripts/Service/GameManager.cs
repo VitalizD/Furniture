@@ -5,13 +5,18 @@ using UnityEngine;
 namespace Service
 {
     [RequireComponent(typeof(CanvasSwitcher))]
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour, IStorable
     {
+        public const string TUTORIAL_FINISHED_KEY = "TUTORIAL_FINISHED";
+        public const string LAST_TUTORIAL_LEVEL_KEY = "LAST_TUTORIAL_LEVEL";
+        public const string LAST_LEVEL_KEY = "LAST_LEVEL";
+
         [SerializeField] private LevelData[] _tutorialLevels;
         [SerializeField] private LevelData[] _levels;
         [SerializeField] private int _lastLevel = 1;
         [SerializeField] private int _lastTutorialLevel = 1;
         [SerializeField] private bool _tutorialFinished = false;
+        [SerializeField] private bool _loadData = false;
         [SerializeField] private float _delayBeforeLevelFinishing;
 
         private CanvasSwitcher _canvasSwitcher;
@@ -22,6 +27,20 @@ namespace Service
 
         public static event Action<int> SetGoalForLevel;
         public static event Action LevelStarted;
+
+        public void Save()
+        {
+            PlayerPrefs.SetInt(TUTORIAL_FINISHED_KEY, _tutorialFinished? 1 : 0);
+            PlayerPrefs.SetInt(LAST_LEVEL_KEY, _lastLevel);
+            PlayerPrefs.SetInt(LAST_TUTORIAL_LEVEL_KEY, _lastTutorialLevel);
+        }
+
+        public void Load()
+        {
+            _tutorialFinished = PlayerPrefs.GetInt(TUTORIAL_FINISHED_KEY, 0) == 1;
+            _lastLevel = PlayerPrefs.GetInt(LAST_LEVEL_KEY, 1);
+            _lastTutorialLevel = PlayerPrefs.GetInt(LAST_TUTORIAL_LEVEL_KEY, 1);
+        }
 
         public void ToHome()
         {
@@ -73,11 +92,16 @@ namespace Service
                 _starsCount += Mathf.Clamp(starsCount - inLevel.StarsCount, 0, 3);
                 inLevel.StarsCount = starsCount;
             }
+
+            Save();
         }
 
         private void Awake()
         {
             _canvasSwitcher = GetComponent<CanvasSwitcher>();
+
+            if (_loadData)
+                Load();
         }
 
         private void Start()
