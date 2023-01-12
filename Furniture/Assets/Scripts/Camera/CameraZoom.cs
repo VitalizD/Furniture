@@ -7,7 +7,8 @@ namespace Gameplay
     {
         [SerializeField] private float _zoomMin;
         [SerializeField] private float _zoomMax;
-        [SerializeField] private float _zoomSpeed;
+        [SerializeField] private float _zoomSpeedTouch;
+        [SerializeField] private float _zoomSpeedWheel;
 
         private Camera _camera;
 
@@ -41,9 +42,9 @@ namespace Gameplay
                 var currentTouchDisctance = Vector2.Distance(first.position, second.position);
 
                 var delta = currentTouchDisctance - firstlyTouchDisctance;
-                Zoom(delta * _zoomSpeed * Time.deltaTime);
+                Zoom(delta * _zoomSpeedTouch * Time.deltaTime);
             }
-            Zoom(Input.GetAxis("Mouse ScrollWheel") * _zoomSpeed * Time.deltaTime);
+            Zoom(Input.GetAxis("Mouse ScrollWheel") * _zoomSpeedWheel * Time.deltaTime);
         }
 
         private void Zoom(float delta)
