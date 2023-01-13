@@ -21,8 +21,11 @@ namespace EventHandlers
             ProgressCounter.LevelFinished += OnFinishLevel;
             RestartButton.RestartButtonPressed += _gameManager.RestartLevel;
             NextLevelButton.NextLevelButtonPressed += _gameManager.NextLevel;
+            PlayButton.PlayButtonPressed += _gameManager.NextLevel;
             HomeButton.HomeButtonPressed += _gameManager.ToHome;
             LevelWithTimer.LevelLost += OnLevelLost;
+            LevelButton.LevelButtonPressed += _gameManager.StartLevel;
+            ChooseLevelButton.ChooseLevelButtonPressed += _gameManager.ToChooseLevelScreen;
         }
 
         private void OnDisable()
@@ -30,8 +33,11 @@ namespace EventHandlers
             ProgressCounter.LevelFinished -= OnFinishLevel;
             RestartButton.RestartButtonPressed -= _gameManager.RestartLevel;
             NextLevelButton.NextLevelButtonPressed -= _gameManager.NextLevel;
+            PlayButton.PlayButtonPressed -= _gameManager.NextLevel;
             HomeButton.HomeButtonPressed -= _gameManager.ToHome;
             LevelWithTimer.LevelLost -= OnLevelLost;
+            LevelButton.LevelButtonPressed -= _gameManager.StartLevel;
+            ChooseLevelButton.ChooseLevelButtonPressed -= _gameManager.ToChooseLevelScreen;
         }
 
         private void OnFinishLevel(int starsCount) => StartCoroutine(_gameManager.FinishLevel(starsCount));

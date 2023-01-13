@@ -27,6 +27,8 @@ namespace Service
 
         public static event Action<int> SetGoalForLevel;
         public static event Action LevelStarted;
+        public static event Action<int> LevelUnlocked;
+        public static event Action<int, int> StarsEarned;
 
         public void Save()
         {
@@ -46,7 +48,12 @@ namespace Service
         {
             if (!_tutorialFinished && _lastTutorialLevel > _tutorialLevels.Length)
                 FinishTutorial();
+
+            DestroyLevel();
+            _canvasSwitcher.SwitchToHome();
         }
+
+        public void ToChooseLevelScreen() => _canvasSwitcher.SwitchToChooseLevel();
 
         public void NextLevel()
         {
@@ -65,6 +72,20 @@ namespace Service
             StartLevel(_currentLevel);
         }
 
+        public void StartLevel(int level)
+        {
+            _canvasSwitcher.SwitchToGameplay();
+            var createdLevel = _tutorialFinished ? _levels[level - 1] : _tutorialLevels[level - 1];
+            _currentLevelObject = Instantiate(createdLevel.gameObject, Vector3.zero, Quaternion.identity);
+            SetGoalForLevel?.Invoke(createdLevel.Goal);
+            LevelStarted?.Invoke();
+            createdLevel.ExecutePrelevelScripts();
+            _currentLevel = level;
+
+            if (_tutorialFinished && _lastLevel < level)
+                _lastLevel = level;
+        }
+
         public IEnumerator FinishLevel(int starsCount)
         {
             yield return new WaitForSeconds(starsCount == 0 ? 0f : _delayBeforeLevelFinishing);
@@ -78,7 +99,13 @@ namespace Service
             {
                 RecalculateStarsCount(_levels[_currentLevel - 1]);
                 if (_currentLevel == _lastLevel)
+                {
                     ++_lastLevel;
+                    LevelUnlocked?.Invoke(_lastLevel);
+                    if (_lastLevel % 7 == 0)
+                        LevelUnlocked?.Invoke(_lastLevel + 1);
+                }
+                StarsEarned?.Invoke(_currentLevel, starsCount);
             }
             else
             {
@@ -106,18 +133,8 @@ namespace Service
 
         private void Start()
         {
-            NextLevel();
-        }
-
-        private void StartLevel(int level)
-        {
-            _canvasSwitcher.SwitchToGameplay();
-            var createdLevel = _tutorialFinished ? _levels[level - 1] : _tutorialLevels[level - 1];
-            _currentLevelObject = Instantiate(createdLevel.gameObject, Vector3.zero, Quaternion.identity);
-            SetGoalForLevel?.Invoke(createdLevel.Goal);
-            LevelStarted?.Invoke();
-            createdLevel.ExecutePrelevelScripts();
-            _currentLevel = level;
+            //NextLevel();
+            _canvasSwitcher.SwitchToHome();
         }
 
         private void FinishTutorial()
