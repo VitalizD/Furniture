@@ -1812,23 +1812,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3376135464724436038, guid: a2901c81b492e354e967db01ee826444, type: 3}
   m_PrefabInstance: {fileID: 6811766444058213781}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8093584449660119163 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3376135465363969518, guid: a2901c81b492e354e967db01ee826444, type: 3}
-  m_PrefabInstance: {fileID: 6811766444058213781}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &271591096932820823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093584449660119163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab87d84bae7ab543b519b3ab542a060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8093584449660119164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3376135465363969513, guid: a2901c81b492e354e967db01ee826444, type: 3}
@@ -2436,6 +2419,10 @@ PrefabInstance:
     - target: {fileID: 8989762153316920499, guid: 614dc5257124f9447a3f8d4f60353e3e, type: 3}
       propertyPath: m_Name
       value: Tutorial Camera Zoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989762153316920499, guid: 614dc5257124f9447a3f8d4f60353e3e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

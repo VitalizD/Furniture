@@ -6,7 +6,10 @@ namespace UI
     public class ChooseLevelScreen : MonoBehaviour
     {
         [SerializeField] private GameObject _content;
+        [SerializeField] private GameObject _weekSwitchPrefab;
+        [SerializeField] private Transform _switchers;
         [SerializeField] private WeekCard[] _weekCards;
+        [SerializeField] private bool _specialLastCard = false;
 
         public void UnlockLevel(int level)
         {
@@ -25,17 +28,25 @@ namespace UI
             StartCoroutine(Initialize());
         }
 
-        private void DistributeLevels()
+        private void InitializeWeekCards()
         {
             for (var i = 0; i < _weekCards.Length; ++i)
+            {
+                Instantiate(_weekSwitchPrefab, _switchers);
+                _weekCards[i].SetWeekNumber(i + 1);
+
+                if (i == _weekCards.Length - 1 && _specialLastCard)
+                    break;
+
                 _weekCards[i].SetLevelNumbers(i * 7 + 1);
+            }
         }
 
         private IEnumerator Initialize()
         {
             _content.SetActive(true);
             yield return new WaitForEndOfFrame();
-            DistributeLevels();
+            InitializeWeekCards();
             _weekCards[0].UnlockLevel(1);
             _content.SetActive(false);
         }

@@ -5,6 +5,8 @@ namespace Gameplay
     [RequireComponent(typeof(Camera))]
     public class CameraZoom : MonoBehaviour
     {
+        [SerializeField] private bool _enableWheelZoom = true;
+        [SerializeField] private bool _enableTouchZoom = true;
         [SerializeField] private float _zoomMin;
         [SerializeField] private float _zoomMax;
         [SerializeField] private float _zoomSpeedTouch;
@@ -30,7 +32,7 @@ namespace Gameplay
 
         private void Update()
         {
-            if (Input.touchCount == 2)
+            if (_enableTouchZoom && Input.touchCount == 2)
             {
                 var first = Input.GetTouch(0);
                 var second = Input.GetTouch(1);
@@ -44,7 +46,8 @@ namespace Gameplay
                 var delta = currentTouchDisctance - firstlyTouchDisctance;
                 Zoom(delta * _zoomSpeedTouch * Time.deltaTime);
             }
-            Zoom(Input.GetAxis("Mouse ScrollWheel") * _zoomSpeedWheel * Time.deltaTime);
+            if (_enableWheelZoom)
+                Zoom(Input.GetAxis("Mouse ScrollWheel") * _zoomSpeedWheel * Time.deltaTime);
         }
 
         private void Zoom(float delta)

@@ -12,7 +12,7 @@ namespace UI
 
         private int _starsCount = 0;
 
-        public void SetWeekNumber(int value) => _title.text = value.ToString();
+        public void SetWeekNumber(int value) => _title.text = $"Неделя {value}";
 
         public void SetLevelNumbers(int start)
         {
