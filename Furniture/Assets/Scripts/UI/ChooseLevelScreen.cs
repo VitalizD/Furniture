@@ -53,7 +53,7 @@ namespace UI
 
         private bool LevelExists(int level)
         {
-            return (level - 1) / 7 < _weekCards.Length;
+            return (level - 1) / 7 < (_specialLastCard ? _weekCards.Length - 1 : _weekCards.Length);
         }
     }
 }

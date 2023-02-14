@@ -1,6 +1,7 @@
 using Gameplay.Counters;
 using Prelevel;
 using Service;
+using UI;
 using UI.Buttons;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ namespace EventHandlers
             LevelWithTimer.LevelLost += OnLevelLost;
             LevelButton.LevelButtonPressed += _gameManager.StartLevel;
             ChooseLevelButton.ChooseLevelButtonPressed += _gameManager.ToChooseLevelScreen;
+            WeekCard.LoadData += CanLoadData;
         }
 
         private void OnDisable()
@@ -38,10 +40,13 @@ namespace EventHandlers
             LevelWithTimer.LevelLost -= OnLevelLost;
             LevelButton.LevelButtonPressed -= _gameManager.StartLevel;
             ChooseLevelButton.ChooseLevelButtonPressed -= _gameManager.ToChooseLevelScreen;
+            WeekCard.LoadData -= CanLoadData;
         }
 
         private void OnFinishLevel(int starsCount) => StartCoroutine(_gameManager.FinishLevel(starsCount));
 
         private void OnLevelLost() => StartCoroutine(_gameManager.FinishLevel(0));
+
+        private bool CanLoadData() => _gameManager.LoadData;
     }
 }

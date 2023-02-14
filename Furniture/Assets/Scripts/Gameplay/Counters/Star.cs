@@ -27,6 +27,8 @@ namespace Gameplay.Counters
             _animation.Play(_appearanceAnimationName);
         }
 
+        public void SetVisibility(bool value) => _filled.gameObject.SetActive(value);
+
         public void CheckState(float barValue)
         {
             if (!_isActive)

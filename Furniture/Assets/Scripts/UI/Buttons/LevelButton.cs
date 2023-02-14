@@ -16,6 +16,7 @@ namespace UI.Buttons
         private int _levelNumber;
 
         public int StarsCount { get; private set; } = 0;
+        public int Number { get => _levelNumber; }
 
         public static event Action<int> LevelButtonPressed;
 
@@ -29,10 +30,12 @@ namespace UI.Buttons
         {
             StarsCount = Mathf.Clamp(count, 0, _stars.Length);
             for (var i = 0; i < StarsCount; ++i)
-                _stars[i].PlayAppearance();
+                _stars[i].SetVisibility(true);
         }
 
         public void SetInteractable(bool value) => _button.interactable = value;
+
+        public bool GetInteractable() => _button.interactable;
 
         private void Awake()
         {

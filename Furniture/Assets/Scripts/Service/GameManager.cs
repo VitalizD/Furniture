@@ -25,6 +25,8 @@ namespace Service
         private int _currentLevel;
         private int _starsCount = 0;
 
+        public bool LoadData { get => _loadData; }
+
         public static event Action<int> SetGoalForLevel;
         public static event Action LevelStarted;
         public static event Action<int> LevelUnlocked;
@@ -43,6 +45,8 @@ namespace Service
             _lastLevel = PlayerPrefs.GetInt(LAST_LEVEL_KEY, 1);
             _lastTutorialLevel = PlayerPrefs.GetInt(LAST_TUTORIAL_LEVEL_KEY, 1);
         }
+
+        public void ResetSave() => PlayerPrefs.DeleteAll();
 
         public void ToHome()
         {
@@ -133,13 +137,16 @@ namespace Service
 
         private void Start()
         {
-            //NextLevel();
-            _canvasSwitcher.SwitchToHome();
+            if (_tutorialFinished)
+                _canvasSwitcher.SwitchToHome();
+            else
+                NextLevel();
         }
 
         private void FinishTutorial()
         {
             _tutorialFinished = true;
+            Save();
         }
 
         private void DestroyLevel()
