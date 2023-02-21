@@ -17,7 +17,7 @@ namespace Service
         public void SwitchToLevelResults(string text, int starsCount)
         {
             _levelResultsCanvas.SetText(text);
-            Switch(_levelResultsCanvas.gameObject);
+            Switch(_levelResultsCanvas.transform.GetChild(0).gameObject);
             _levelResultsCanvas.StartStarsAnimation(starsCount);
         }
 

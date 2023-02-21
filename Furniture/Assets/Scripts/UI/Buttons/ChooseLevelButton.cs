@@ -18,10 +18,10 @@ namespace UI.Buttons
             _button.onClick.AddListener(OnClick);
         }
 
-        private void OnEnable()
-        {
-            _button.interactable = PlayerPrefs.GetInt(GameManager.TUTORIAL_FINISHED_KEY, 0) == 1;
-        }
+        //private void OnEnable()
+        //{
+        //    _button.interactable = PlayerPrefs.GetInt(GameManager.TUTORIAL_FINISHED_KEY, 0) == 1;
+        //}
 
         private void OnClick()
         {
