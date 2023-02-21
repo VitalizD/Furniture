@@ -41,7 +41,7 @@ namespace UI
         public void SetWeekNumber(int value)
         {
             _weekNumber = value;
-            _title.text = $"Неделя {value}";
+            _title.text = $"Week {value}";
         }
 
         public void SetLevelNumbers(int start)

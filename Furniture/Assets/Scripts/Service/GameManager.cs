@@ -98,9 +98,9 @@ namespace Service
         {
             yield return new WaitForSeconds(starsCount == 0 ? 0f : _delayBeforeLevelFinishing);
             DestroyLevel();
-            var resultText = _tutorialFinished ? $"Уровень {_currentLevel}\nпройден!" : "Уровень\nпройден!";
+            var resultText = _tutorialFinished ? $"Level {_currentLevel}\ncompleted!" : "Level\ncompleted!";
             if (starsCount == 0)
-                resultText = $"Уровень {_currentLevel}\nне пройден";
+                resultText = $"Level {_currentLevel}\nnot completed";
             _canvasSwitcher.SwitchToLevelResults(resultText, starsCount);
 
             if (_tutorialFinished)
