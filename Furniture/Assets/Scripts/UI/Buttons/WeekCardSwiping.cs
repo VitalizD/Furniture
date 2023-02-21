@@ -9,7 +9,10 @@ namespace UI.Buttons
     {
         [SerializeField] private Color[] _colors;
         [SerializeField] private Scrollbar _scrollbar;
+        [SerializeField] private ScrollRect _scrollView;
         [SerializeField] private GameObject _imageContent;
+        [SerializeField] private float _minSpeedForStop;
+        [SerializeField] private float _sharpness;
 
         private float _scrollPos = 0f;
         private float[] _pos;
@@ -40,24 +43,20 @@ namespace UI.Buttons
                 _pos[i] = distance * i;
             }
 
-            if (Input.GetMouseButton(0))
-            {
-                _scrollPos = _scrollbar.value;
-            }
-            else
+            if (!Input.GetMouseButton(0) && _scrollView.velocity.magnitude <= _minSpeedForStop)
             {
                 for (int i = 0; i < _pos.Length; i++)
                 {
-                    if (_scrollPos < _pos[i] + (distance / 2) && _scrollPos > _pos[i] - (distance / 2))
+                    if (_scrollbar.value < _pos[i] + (distance / 2) && _scrollbar.value > _pos[i] - (distance / 2))
                     {
-                        _scrollbar.value = Mathf.Lerp(_scrollbar.value, _pos[i], 0.1f);
+                        _scrollbar.value = Mathf.Lerp(_scrollbar.value, _pos[i], _sharpness);
                     }
                 }
             }
 
             for (int i = 0; i < _pos.Length; i++)
             {
-                if (_scrollPos < _pos[i] + (distance / 2) && _scrollPos > _pos[i] - (distance / 2))
+                if (_scrollbar.value < _pos[i] + (distance / 2) && _scrollbar.value > _pos[i] - (distance / 2))
                 {
                     //Debug.LogWarning("Current Selected Level" + i);
                     transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
