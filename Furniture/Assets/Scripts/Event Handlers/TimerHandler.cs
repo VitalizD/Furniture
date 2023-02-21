@@ -1,5 +1,6 @@
 using Gameplay;
 using Prelevel;
+using Service;
 using UnityEngine;
 
 namespace EventHandlers
@@ -18,12 +19,14 @@ namespace EventHandlers
         {
             LevelWithTimer.StartTimer += _timer.Activate;
             LevelWithTimer.StopTimer += _timer.Stop;
+            GameManager.LevelDestroyed += _timer.Stop;
         }
 
         private void OnDisable()
         {
             LevelWithTimer.StartTimer -= _timer.Activate;
             LevelWithTimer.StopTimer -= _timer.Stop;
+            GameManager.LevelDestroyed -= _timer.Stop;
         }
     }
 }

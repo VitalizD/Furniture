@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4306082641934015786}
   - component: {fileID: 4306082641934015789}
   - component: {fileID: 4306082641934015788}
-  - component: {fileID: 3670996086113224553}
+  - component: {fileID: 8016144027530911431}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 18f0eb54f155c65449a5c0a0fc35414e, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 8b81dcb445c68484984717379ea3a56b, type: 3}
     m_SelectedSprite: {fileID: 21300000, guid: 18f0eb54f155c65449a5c0a0fc35414e, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 18f0eb54f155c65449a5c0a0fc35414e, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 8b81dcb445c68484984717379ea3a56b, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3670996086113224553
+--- !u!114 &8016144027530911431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,6 +131,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4306082641934015790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e649eaa5ff7a147b0d6b31cdd2d781, type: 3}
+  m_Script: {fileID: 11500000, guid: 7eb14382f6009c64a9502f8bab95e7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

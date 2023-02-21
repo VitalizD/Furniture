@@ -31,6 +31,7 @@ namespace Service
         public static event Action LevelStarted;
         public static event Action<int> LevelUnlocked;
         public static event Action<int, int> StarsEarned;
+        public static event Action LevelDestroyed;
 
         public void Save()
         {
@@ -50,14 +51,17 @@ namespace Service
 
         public void ToHome()
         {
+            _canvasSwitcher.SwitchToHome();
+        }
+
+        public void ToChooseLevelScreen()
+        {
             if (!_tutorialFinished && _lastTutorialLevel > _tutorialLevels.Length)
                 FinishTutorial();
 
             DestroyLevel();
-            _canvasSwitcher.SwitchToHome();
+            _canvasSwitcher.SwitchToChooseLevel();
         }
-
-        public void ToChooseLevelScreen() => _canvasSwitcher.SwitchToChooseLevel();
 
         public void NextLevel()
         {
@@ -153,6 +157,7 @@ namespace Service
         {
             if (_currentLevelObject != null)
                 Destroy(_currentLevelObject);
+            LevelDestroyed?.Invoke();
         }
     }
 }
