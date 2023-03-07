@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -510.50012, y: -61.75}
+  m_AnchoredPosition: {x: -510.5001, y: -61.75}
   m_SizeDelta: {x: 20.079987, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4191823
@@ -3894,6 +3894,7 @@ GameObject:
   - component: {fileID: 801157179}
   - component: {fileID: 801157181}
   - component: {fileID: 801157180}
+  - component: {fileID: 801157182}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -3943,7 +3944,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9224750892859a94bbf21bc8a17ce1db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20722f1e472b12e45ba03aae6ad37e7f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3961,6 +3962,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801157178}
   m_CullTransparentMesh: 1
+--- !u!114 &801157182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801157178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0.3137255}
+  m_EffectDistance: {x: 0, y: -9}
+  m_UseGraphicAlpha: 1
 --- !u!1 &823460875
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,7 +4184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.999878, y: 0}
+  m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &931295365
@@ -7729,7 +7745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4889d7e51ff5f0e42ad02583ef296492, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9a16e8c58d1bd24fb161301eea61329, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7754,7 +7770,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489069761}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
@@ -7774,7 +7790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.29803923}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.4392157}
   m_EffectDistance: {x: 0, y: -7}
   m_UseGraphicAlpha: 1
 --- !u!1001 &1524792453
@@ -9788,7 +9804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.35686275}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5058824}
   m_EffectDistance: {x: 0, y: -7}
   m_UseGraphicAlpha: 1
 --- !u!1 &1919788437
@@ -10054,6 +10070,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1468051628}
     m_Modifications:
+    - target: {fileID: 131233616369757236, guid: 3a64d9258a5cdf0469b958184d7973fd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1083882055734215538, guid: 3a64d9258a5cdf0469b958184d7973fd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10286,6 +10306,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 2927973145920874853, guid: 3a64d9258a5cdf0469b958184d7973fd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 21e8346156b978d4195d5a69818ac9bf, type: 3}
     - target: {fileID: 2927973146341421654, guid: 3a64d9258a5cdf0469b958184d7973fd, type: 3}
       propertyPath: m_Name
       value: Week Card
